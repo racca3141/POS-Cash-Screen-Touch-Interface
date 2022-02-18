@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+	  body {
+	    color: white;
+	    background-color: midnightblue;
+		margin-left: 35%;
+		margin-top: 5%;
+		font-family: arial, sans-serif;
+	  }
+	  
+	  #displayTotal {
+	    width: 400px;
+		text-align: center;
+	    font-size: 30px;
+		color: orange;
+	  }
+	  
+	  #displayCurrentAmount {
+	    font-size: 20px;
+		color: black;
+		background-color: white;
+		width: 360px;
+		padding: 20px;
+		text-align: center;
+	  }
+	  
+	  .buttons button {
+        background-color: lightblue;
+        border: none;
+        color: black;
+        padding: 10px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 4px;
+        cursor: pointer;
+        width: 90px;
+        border-radius: 5px;
+      }
+	  
+	  #clearButton {
+	    background-color: orange;
+	  }
+	  
+	  #changeAmt {
+	    font-size: 30px;
+		width: 400px;
+		text-align: center;
+		color: white;
+	  }
+	  
+	  #doneButton button{
+	    background-color: orange;
+		color: white;
+	    width: 400px;
+		margin-top: 10px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		text-align: center;
+		border-radius: 5px;
+	  }
+	  
+	  
+    </style>
+	<script>
+	  window.ticketTotal = 14.55;
+	  window.cashTotal = 0;
+	  function updateDisplay(){
+	    document.getElementById("displayCurrentAmount").innerHTML = cashTotal.toFixed(2);
+	  }
+	  function addCash(amt){
+	    window.cashTotal += amt;
+		updateDisplay();
+		findChange();
+	  }
+	  function clearCash(){
+	    window.cashTotal = 0;
+		updateDisplay();
+		//clear display and say oops
+		while (displayFinish.firstChild) {
+          displayFinish.removeChild(displayFinish.firstChild);
+	    }
+		document.getElementById("displayFinish").innerHTML = "<div id='changeAmt'>Oops! Try again.</div>"
+	  }
+	  function findChange(){
+		if (cashTotal < ticketTotal){
+		  document.getElementById("changeAmt").innerHTML = "Add more please.";
+		}
+		else {
+		  //display done button and change
+		  document.getElementById("changeAmt").innerHTML = "$" + (cashTotal - ticketTotal).toFixed(2);
+		  
+		  
+		  var element = document.getElementById("doneButton");
+          if(typeof(element) != 'undefined' && element != null){
+            console.log("Element exists");
+		    } 
+			else{
+              document.getElementById("displayFinish").innerHTML += "<div id='doneButton'><button onclick='finalizeTransaction()'>Done</button></div>";
+	        } 
+		}
+		
+	  }
+	</script>
+  </head>
+  <body>
+    <div id="displayTotal">Total(10 items): $14.55</div>
+	<br>
+	<br>
+    <div>Amount tendered:</div>
+    <div id="displayCurrentAmount">$0.00</div>
+	<br>
+	<br>
+    <div>Add currency:</div>
+	<div id="cashButtons" class="buttons">
+	  <div>
+	    <button onclick="addCash(100)">$100</button>
+	    <button onclick="addCash(50)">$50</button>
+	    <button onclick="addCash(20)">$20</button>
+	    <button onclick="addCash(10)">$10</button>
+	  </div>
+	  <div>
+	    <button onclick="addCash(5)">$5</button>
+	    <button onclick="addCash(1)">$1</button>
+	    <button onclick="addCash(0.50)">50&#162;</button>
+	    <button onclick="addCash(0.25)">25&#162;</button>
+	  </div>
+	  <div>
+	    <button onclick="addCash(0.10)">10&#162;</button>
+	    <button onclick="addCash(0.05)">5&#162;</button>
+	    <button onclick="addCash(0.01)">1&#162;</button>
+	    <button onclick="clearCash()" id="clearButton">Clear</button>
+	  </div>
+	</div>
+	<br>
+	<br>
+	</div>Change due:</div>
+	<br>
+	<div id="displayFinish">
+	  <div id="changeAmt">Waiting...</div>
+	</div>
+	
+  </body>
+</html>
