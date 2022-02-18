@@ -5,4 +5,5 @@ Instead of an input box and the use of a keyboard (or an onscreen keyboard), thi
 
 Here is the interface:
 
-![Alt text](url "https://user-images.githubusercontent.com/31526815/154773952-fa788ba4-2096-458d-a8f6-cc36fded7f10.jpg")
+
+<img src="https://user-images.githubusercontent.com/31526815/154773952-fa788ba4-2096-458d-a8f6-cc36fded7f10.jpg">
